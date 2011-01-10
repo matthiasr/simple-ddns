@@ -27,3 +27,8 @@ fi
 
 # from here on, do not accept missing variables
 set -u
+
+alias CURL="curl -s"
+# if you don't have curl:
+#alias CURL="wget -q -O -"
+#alias CURL="fetch -q -o -"
