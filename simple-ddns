@@ -13,12 +13,12 @@
 set -e
 
 if [ -z $DDNS_CONF ]; then
-    if [ -r ddns.conf ]; then
-        DDNS_CONF=./ddns.conf
-    elif [ -r /etc/ddns.conf ]; then
-        DDNS_CONF=/etc/ddns.conf
+    if [ -r simple-ddns.conf ]; then
+        DDNS_CONF=./simple-ddns.conf
+    elif [ -r /etc/simple-ddns.conf ]; then
+        DDNS_CONF=/etc/simple-ddns.conf
     else
-        echo "No config file found (use ./ddns.conf, /etc/ddns.conf or set DDNS_CONF)"
+        echo "No config file found (use ./simple-ddns.conf, /etc/simple-ddns.conf or set DDNS_CONF)"
         exit 1
     fi
 fi
