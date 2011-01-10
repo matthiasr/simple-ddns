@@ -25,6 +25,9 @@ fi
 
 . $DDNS_CONF
 
+[ -z $URL ] && URL="http://members.dyndns.org"
+[ -z $CHECKIP_URL ] && CHECKIP_URL="http://checkip.dyndns.org"
+
 # from here on, do not accept missing variables
 set -u
 
