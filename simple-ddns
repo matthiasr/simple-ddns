@@ -26,13 +26,19 @@ fi
 
 . $DDNS_CONF
 
-[ -z $URL ] && URL="http://members.dyndns.org"
+[ -z $HOST ] && HOST="members.dyndns.org"
 [ -z $CHECKIP_URL ] && CHECKIP_URL="http://checkip.dyndns.org"
 [ -z $CHECKIP_STRING ] && CHECKIP_STRING="Current IP Address: "
 [ -z $TMPFILE ] && TMPFILE=/tmp/simple-ddns.ip
 
+# URL may not yet be set ...
+[ -z $URL ] && URL=""
+
 # from here on, do not accept missing variables
 set -u
+
+# ... but we really want the unbound-variables-check when setting it
+[ -z $URL ] && URL="http://$USER:$PASSWORD@$HOST/nic/update?hostname="
 
 alias CURL="curl -s"
 # if you don't have curl:
@@ -53,3 +59,9 @@ if [ -r $TMPFILE ]; then
     fi
 fi
 echo $IP > $TMPFILE
+
+for DOMAIN in $DOMAINS; do
+    echo "$DOMAIN ..."
+    CURL "$URL$DOMAIN"
+    echo
+done
